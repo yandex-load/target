@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name='target',
-    version='0.0.7',
+    version='0.0.8',
     description='a performance measurement stub',
     maintainer='Alexey Lavrenuke (load testing)',
     maintainer_email='direvius@yandex-team.ru',
     packages=find_packages(exclude=["tests", "tmp", "docs", "data"]),
     install_requires=[
-        'numpy',
+        'numpy', 'watchdog'
         'tornado>=4.4.2',
     ],
     setup_requires=[
