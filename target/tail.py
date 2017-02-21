@@ -17,22 +17,26 @@ class ModifyHandler(FileSystemEventHandler):
                 logfile.seek(self.where)
                 lines = logfile.readlines()
                 if len(lines) == 3:
-                    stats = {}
-                    nobjects = [
-                        int(v) for v
-                        in lines[1].rstrip("\n").rsplit(":", 1)[1].split()
-                    ]
-                    for i, v in enumerate(nobjects):
-                        stats["nobjects_%s" % i] = v
-                    pairs = lines[2].rstrip("\n").split(",")[1:]
+                    try:
+                        stats = {}
+                        nobjects = [
+                            int(v) for v
+                            in lines[1].rstrip("\n").rsplit(":", 1)[1].split()
+                        ]
+                        for i, v in enumerate(nobjects):
+                            stats["nobjects_%s" % i] = v
+                        pairs = lines[2].rstrip("\n").split(",")[1:]
 
-                    stats["unreachable"] = int(pairs[0].split()[0])
-                    stats["uncollectable"] = int(pairs[1].split()[0])
-                    stats["elapsed"] = float(pairs[2].split()[0].rstrip("s"))
-                    print(json.dumps({
-                        "ts": time.time(),
-                        "stats": stats
-                    }))
+                        stats["unreachable"] = int(pairs[0].split()[0])
+                        stats["uncollectable"] = int(pairs[1].split()[0])
+                        stats["elapsed"] = float(
+                            pairs[2].split()[0].rstrip("s"))
+                        print(json.dumps({
+                            "ts": time.time(),
+                            "stats": stats
+                        }))
+                    except:
+                        pass
                 self.where = logfile.tell()
 
 
