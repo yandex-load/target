@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='target',
-    version='0.0.5',
+    version='0.0.6',
     description='a performance measurement stub',
     maintainer='Alexey Lavrenuke (load testing)',
     maintainer_email='direvius@yandex-team.ru',
@@ -27,4 +27,7 @@ setup(
         'Programming Language :: Python :: 2',
         'Programming Language :: Python :: 3',
     ],
-    entry_points={'console_scripts': ['target = target.cmd:main', ], }, )
+    entry_points={'console_scripts': [
+        'target = target.cmd:main',
+        'tailgc = target.tail:main',
+    ], }, )
