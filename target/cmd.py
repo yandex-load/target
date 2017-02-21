@@ -3,6 +3,7 @@ import tornado.httpserver
 import tornado.web
 import argparse
 import numpy as np
+import gc
 
 
 class MainHandler(tornado.web.RequestHandler):
@@ -35,6 +36,8 @@ def main():
     parser = argparse.ArgumentParser(description='Target stub.')
     parser.add_argument('--port', dest='port', type=int, default=8888, help='target port')
     parser.add_argument('--workers', dest='workers', type=int, default=1, help='number of workers')
+    parser.add_argument('--loggc', dest='loggc', action='store_true', help='log gc stats')
+    gc.set_debug(gc.DEBUG_STATS | gc.DEBUG_COLLECTABLE)
     args = parser.parse_args()
     app = make_app()
     server = tornado.httpserver.HTTPServer(app)

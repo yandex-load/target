@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name='target',
-    version='0.0.4',
+    version='0.0.5',
     description='a performance measurement stub',
     maintainer='Alexey Lavrenuke (load testing)',
     maintainer_email='direvius@yandex-team.ru',
