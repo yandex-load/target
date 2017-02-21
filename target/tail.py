@@ -32,8 +32,9 @@ class ModifyHandler(FileSystemEventHandler):
                         stats["elapsed"] = float(
                             pairs[2].split()[0].rstrip("s"))
                         print(json.dumps({
-                            "ts": time.time(),
-                            "stats": stats
+                            "name": "gc",
+                            "timestamp": int(time.time()),
+                            "fields": stats,
                         }))
                     except:
                         pass
