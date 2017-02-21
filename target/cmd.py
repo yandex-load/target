@@ -12,10 +12,10 @@ class MainHandler(tornado.web.RequestHandler):
 
 class CpuHandler(tornado.web.RequestHandler):
     def get(self):
-        x, y = np.ogrid[-2:1:500j, -1.5:1.5:500j]
+        x, y = np.ogrid[-2:1:100j, -1.5:1.5:100j]
 
         # Increase this to improve the shape of the fractal
-        iterations = 4
+        iterations = 3
 
         c = x + 1j*y
 
