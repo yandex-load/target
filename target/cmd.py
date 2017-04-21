@@ -24,11 +24,34 @@ class CpuHandler(tornado.web.RequestHandler):
         self.write(",".join(str(num) for num in np.angle(z)))
 
 
+class MemoryHandler(tornado.web.RequestHandler):
+    data = []
+
+    def get(self):
+        self.data.append(1)
+
+
+class DiskHandler(tornado.web.RequestHandler):
+    data = []
+
+    def get(self):
+        with open("test.tmp", "w") as f:
+            f.write("Hello world!\n")
+
+
+class SleepHandler(tornado.web.RequestHandler):
+    @tornado.gen.coroutine
+    def get(self):
+        yield tornado.gen.sleep(np.random.exponential()/4)
+
+
 def make_app():
     return tornado.web.Application([
         (r"/", MainHandler),
         (r"/cpu", CpuHandler),
-        (r"/disk", MainHandler),
+        (r"/mem", MemoryHandler),
+        (r"/disk", DiskHandler),
+        (r"/sleep", SleepHandler)
     ])
 
 
