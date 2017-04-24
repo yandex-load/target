@@ -51,7 +51,12 @@ def make_app():
         (r"/cpu", CpuHandler),
         (r"/mem", MemoryHandler),
         (r"/disk", DiskHandler),
-        (r"/sleep", SleepHandler)
+        (r"/sleep", SleepHandler),
+        (r"/1", MainHandler),
+        (r"/2", CpuHandler),
+        (r"/3", MemoryHandler),
+        (r"/4", DiskHandler),
+        (r"/5", SleepHandler),
     ])
 
 
