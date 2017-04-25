@@ -28,7 +28,7 @@ class MemoryHandler(tornado.web.RequestHandler):
     data = []
 
     def get(self):
-        self.data.append(1)
+        self.data.append(np.zeros(1000))
 
 
 class DiskHandler(tornado.web.RequestHandler):
