@@ -28,7 +28,7 @@ class MemoryHandler(tornado.web.RequestHandler):
     data = []
 
     def get(self):
-        self.data.append(np.zeros(1024*1024))
+        self.data.append(1)
 
 
 class DiskHandler(tornado.web.RequestHandler):
@@ -42,7 +42,18 @@ class DiskHandler(tornado.web.RequestHandler):
 class SleepHandler(tornado.web.RequestHandler):
     @tornado.gen.coroutine
     def get(self):
-        yield tornado.gen.sleep(np.random.exponential()/4)
+        yield tornado.gen.sleep(np.random.lognormal(mean=-1.63, sigma=0.7))
+
+
+class SleepyHandler(tornado.web.RequestHandler):
+    @tornado.gen.coroutine
+    def get(self):
+        if np.random.rand() < 0.99:
+            yield tornado.gen.sleep(
+                np.random.lognormal(mean=-2, sigma=0.7))
+        else:
+            yield tornado.gen.sleep(
+                np.random.lognormal(mean=1, sigma=0.25))
 
 
 def make_app():
@@ -57,6 +68,7 @@ def make_app():
         (r"/3", MemoryHandler),
         (r"/4", DiskHandler),
         (r"/5", SleepHandler),
+        (r"/5star", SleepyHandler),
     ])
 
 
