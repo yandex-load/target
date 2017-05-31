@@ -50,7 +50,7 @@ class SleepyHandler(tornado.web.RequestHandler):
     def get(self):
         if np.random.rand() < 0.99:
             yield tornado.gen.sleep(
-                np.random.lognormal(mean=-2, sigma=0.7))
+                np.random.lognormal(mean=-1.63, sigma=0.7))
         else:
             yield tornado.gen.sleep(
                 np.random.lognormal(mean=1, sigma=0.25))
